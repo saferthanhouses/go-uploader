@@ -1,0 +1,50 @@
+enum Status {
+    OPEN
+    ORGANISING
+    ORGANISED
+    CLOSED
+}
+
+enum Price {
+    FREE
+    LOW
+    MEDIUM
+    HIGH
+}
+
+type User {
+  id: ID! @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  name: String
+  email: String! @unique
+  password: String!
+  profilePicture: String
+  homeLocation: String
+  bio: String
+  requestsMade: [Request!]! @relation(name: "RequestsMade")
+  requestsJoined: [Request!]! @relation(name: "RequestsJoined") @unique
+  isVerified: Boolean! @default(value: false)
+  showNotifications: Boolean! @default(value: true)
+}
+
+type Request {
+    id: ID! @unique
+    createdAt: DateTime!
+    createdBy: User! @relation(name: "RequestsMade")
+    location: String!
+    title: String!
+    description: String!
+    status: Status! @default(value: OPEN)
+    interestedUsers: [User!]! @relation(name: "RequestsJoined")
+    comments: [Comment!]!
+    suggestedPrice: Price
+}
+
+type Comment {
+    id: ID! @unique
+    createdAt: DateTime!
+    createdBy: User!
+    text: String!
+    request: Request!
+}
