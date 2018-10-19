@@ -61,9 +61,10 @@ func main(){
 				return
 			}
 
+			// Cors stuff
 			r.Header.Set("Access-Control-Allow-Origin", "http://localhost:8080")
-			// the header contains useful info, like the original file name
 
+			// Generate ID for the file
 			id := xid.New()
 
 			n, err := client.PutObject(spaceName, id.String(), file, header.Size, minio.PutObjectOptions{})
@@ -80,19 +81,3 @@ func main(){
 	serverErr := http.ListenAndServe(":8081", h)
 	log.Fatal(serverErr)
 }
-
-//func uploadHandler(client *minio.Client) func(w http.ResponseWriter, r *http.Request){
-	//return /**/
-
-
-	//ctx.FormFile("file")
-
-	//client.PutObject(spaceName, "test", multiPartForm.Value, -1)
-
-	//n, err := client.FPutObject(spaceName, objectName, filePath, minio.PutObjectOptions{ContentType:contentType})
-	//if err != nil {
-	//	log.Fatalln(err)
-	//}
-	//
-	//log.Printf("Successfully uploaded %s of size %d\n", objectName, n)
-//}
