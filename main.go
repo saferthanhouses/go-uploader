@@ -53,6 +53,22 @@ func main(){
 	h := http.NewServeMux()
 
 	h.HandleFunc("/upload", func(w http.ResponseWriter, r *http.Request) {
+
+		// CORS stuff: Pre-flight response
+		if r.Method == http.MethodOptions {
+			w.Header().Set("Access-Control-Allow-Origin", "http://localhost:8080")
+			w.Header().Set("Access-Control-Allow-Methods", "POST")
+			w.Header().Set("Access-Control-Allow-Headers", "Authorization")
+
+			return
+		}
+
+		if r.Method != http.MethodPost {
+			w.WriteHeader(http.StatusMethodNotAllowed)
+			fmt.Fprint(w, "Method Not Allowed")
+			return
+		}
+
 		authenticated, err := authenticate(r, appSecret)
 
 		if err != nil {
@@ -94,8 +110,8 @@ func main(){
 			return
 		}
 
-		// Cors stuff
-		r.Header.Set("Access-Control-Allow-Origin", "http://localhost:8080")
+		// More CORS
+		w.Header().Set("Access-Control-Allow-Origin", "http://localhost:8080")
 
 		// Generate ID for the file
 		id := xid.New()
