@@ -8,17 +8,17 @@ Golang service for handling file uploads
 ####Directory Structure
 
 ├── README.md
-├── config
-│   └── config.go   # load configuration from environmental variables
-├── main.go         # start server
-├── middleware        
-│   ├── auth.go     # authenticate requests
-│   ├── cors.go     # make requests work with Cross Origin Resource Sharing
-│   └── logging.go  # TODO
-├── routes
-│   └── upload.go   # Basic upload route
-├── upload-client
-│   └── client.go   # Wrapper around AWS-style object storage client 
-└── utils
-    ├── file.go     # bork
-    └── url.go      # bonk
+<br>├── config
+<br>│   └── config.go   # load configuration from environmental variables
+<br>├── main.go         # start server
+<br>├── middleware        
+<br>│   ├── auth.go     # authenticate requests
+<br>│   ├── cors.go     # make requests work with Cross Origin Resource Sharing
+<br>│   └── logging.go  # TODO
+<br>├── routes
+<br>│   └── upload.go   # Basic upload route
+<br>├── upload-client
+<br>│   └── client.go   # Wrapper around AWS-style object storage client 
+<br>└── utils
+<br>    ├── file.go     # bork
+<br>    └── url.go      # bonk
