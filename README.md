@@ -11,20 +11,14 @@ Golang service for handling file uploads
 ├── config
 │   └── config.go   # load configuration from environmental variables
 ├── main.go         # start server
-├── middleware      
-│   ├── auth.go
-│   ├── cors.go
-│   └── logging.go
-├── prisma
-│   ├── datamodel.prisma
-│   └── prisma.yml
-├── prisma-client
-│   ├── lib.go
-│   └── prisma.go
+├── middleware        
+│   ├── auth.go     # authenticate requests
+│   ├── cors.go     # make requests work with Cross Origin Resource Sharing
+│   └── logging.go  # TODO
 ├── routes
-│   └── upload.go
+│   └── upload.go   # Basic upload route
 ├── upload-client
-│   └── client.go
+│   └── client.go   # Wrapper around AWS-style object storage client 
 └── utils
-    ├── file.go
-    └── url.go
+    ├── file.go     # bork
+    └── url.go      # bonk
